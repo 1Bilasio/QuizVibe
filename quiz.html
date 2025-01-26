@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+    <div id="quiz-container">
+        <h1>Quiz Game</h1>
+        <form id="quiz-form">
+            <div class="question" id="question-container"></div>
+            <div class="choices">
+                <input type="radio" name="choice" id="choice1" value="0"><label for="choice1" id="choice1-label"></label><br>
+                <input type="radio" name="choice" id="choice2" value="1"><label for="choice2" id="choice2-label"></label><br>
+                <input type="radio" name="choice" id="choice3" value="2"><label for="choice3" id="choice3-label"></label><br>
+                <input type="radio" name="choice" id="choice4" value="3"><label for="choice4" id="choice4-label"></label><br>
+            </div>
+            <button type="button" id="next-btn">Next Question</button>
+        </form>
+        <div id="score-container" style="display: none;">
+            <h2>Your Total Score: <span id="score"></span>/10</h2>
+        </div>
+    </div>
+    <script src="quiz.js"></script>
+</body>
+
+</html>
