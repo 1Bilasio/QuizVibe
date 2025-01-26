@@ -4,30 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <a href="login.css">
-        <script>
-            function login() {
-                // Retrieve the username from the input field
-                const username = document.getElementById('username').value;
-
-                if (username) {
-                    // Save the username in localStorage
-                    localStorage.setItem('user', username);
-                    // Redirect to the main page after login
-                    window.location.href = 'index.html'; // Back to the main page
-                } else {
-                    alert('Please enter a username to log in.');
-                }
-            }
-        </script>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
-    <h1>Login or Register</h1>
-    <label for="username">Username:</label>
-    <input type="text" id="username" required>
-    <button onclick="login()">Log In</button>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p id="error-message" style="color: red; display: none;">Invalid username or password.</p>
+        </form>
+    </div>
+
+    <!-- Add this after your login form in HTML -->
+    <div id="adminSection" style="display: none;">
+        <h2>Admin - Post a New Question</h2>
+        <form id="postQuestionForm">
+            <div>
+                <label for="question">Question:</label>
+                <input type="text" id="question" required>
+            </div>
+
+            <div>
+                <label for="choice1">Choice 1:</label>
+                <input type="text" id="choice1" required>
+            </div>
+
+            <div>
+                <label for="choice2">Choice 2:</label>
+                <input type="text" id="choice2" required>
+            </div>
+
+            <div>
+                <label for="choice3">Choice 3:</label>
+                <input type="text" id="choice3" required>
+            </div>
+
+            <div>
+                <label for="choice4">Choice 4:</label>
+                <input type="text" id="choice4" required>
+            </div>
+
+            <div>
+                <label for="correctAnswer">Select the correct answer:</label><br>
+                <input type="radio" name="correctAnswer" value="1"> Choice 1<br>
+                <input type="radio" name="correctAnswer" value="2"> Choice 2<br>
+                <input type="radio" name="correctAnswer" value="3"> Choice 3<br>
+                <input type="radio" name="correctAnswer" value="4"> Choice 4<br>
+            </div>
+
+            <button type="submit">Post Question</button>
+        </form>
+
+        <h3>Posted Questions</h3>
+        <ul id="questionsList">
+            <!-- List of posted questions will be displayed here -->
+        </ul>
+    </div>
+
+
+
+    <script src="login.js"></script>
 </body>
 
 </html>
