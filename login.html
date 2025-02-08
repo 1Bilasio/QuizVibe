@@ -4,75 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Trivia Admin</title>
     <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
-    <div class="login-container">
+    <div id="loginFormContainer">
         <h2>Login</h2>
         <form id="loginForm">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" required>
-            </div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required><br>
             <button type="submit">Login</button>
-            <p id="error-message" style="color: red; display: none;">Invalid username or password.</p>
         </form>
+        <p id="error-message" style="color:red; display:none;">Invalid credentials. Please try again.</p>
     </div>
 
-    <!-- Add this after your login form in HTML -->
-    <div id="adminSection" style="display: none;">
-        <h2>Admin - Post a New Question</h2>
+    <div id="adminSection" style="display:none;">
+        <h2>Admin Section</h2>
+        <h3>Post New Question</h3>
         <form id="postQuestionForm">
-            <div>
-                <label for="question">Question:</label>
-                <input type="text" id="question" required>
-            </div>
+            <label for="question">Question:</label>
+            <input type="text" id="question" required><br>
+            <label for="choice1">Choice 1:</label>
+            <input type="text" id="choice1" required><br>
+            <label for="choice2">Choice 2:</label>
+            <input type="text" id="choice2" required><br>
+            <label for="choice3">Choice 3:</label>
+            <input type="text" id="choice3" required><br>
+            <label for="choice4">Choice 4:</label>
+            <input type="text" id="choice4" required><br>
 
-            <div>
-                <label for="choice1">Choice 1:</label>
-                <input type="text" id="choice1" required>
-            </div>
-
-            <div>
-                <label for="choice2">Choice 2:</label>
-                <input type="text" id="choice2" required>
-            </div>
-
-            <div>
-                <label for="choice3">Choice 3:</label>
-                <input type="text" id="choice3" required>
-            </div>
-
-            <div>
-                <label for="choice4">Choice 4:</label>
-                <input type="text" id="choice4" required>
-            </div>
-
-            <div>
-                <label for="correctAnswer">Select the correct answer:</label><br>
-                <input type="radio" name="correctAnswer" value="1"> Choice 1<br>
-                <input type="radio" name="correctAnswer" value="2"> Choice 2<br>
-                <input type="radio" name="correctAnswer" value="3"> Choice 3<br>
-                <input type="radio" name="correctAnswer" value="4"> Choice 4<br>
-            </div>
+            <label>Correct Answer:</label><br>
+            <input type="radio" name="correctAnswer" value="1"> 1
+            <input type="radio" name="correctAnswer" value="2"> 2
+            <input type="radio" name="correctAnswer" value="3"> 3
+            <input type="radio" name="correctAnswer" value="4"> 4<br>
 
             <button type="submit">Post Question</button>
         </form>
 
         <h3>Posted Questions</h3>
-        <ul id="questionsList">
-            <!-- List of posted questions will be displayed here -->
-        </ul>
+        <ul id="questionsList"></ul>
+        <button id="generateTrivia">Generate Trivia (10 Random Questions)</button>
+        <button id="deleteAllQuestions">Delete All Questions</button>
     </div>
-
-
-
 
     <script src="login.js"></script>
 </body>

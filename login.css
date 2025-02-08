@@ -1,57 +1,144 @@
-body {
-    font-family: Arial, sans-serif;
-    background-image: url(milky-way.jpg);
-    background-size: 100vw 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.login-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-form div {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-echoice1,
-choice2,
-choice3,
-choice4 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-color: #e2e2e2;
-}
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-image: url(milky-way.jpg);
+                            background-size: 100vw 100vh;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        
+                        h2,
+                        h3 {
+                            color: #333;
+                            text-align: center;
+                        }
+                        
+                        #loginFormContainer,
+                        #adminSection {
+                            width: 60%;
+                            margin: 0 auto;
+                            padding: 20px;
+                            background-color: white;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            border-radius: 8px;
+                            margin-top: 50px;
+                        }
+                        /* Login Form */
+                        
+                        #loginForm {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 15px;
+                        }
+                        
+                        #loginForm input {
+                            padding: 10px;
+                            font-size: 16px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                        }
+                        
+                        #loginForm button {
+                            padding: 10px;
+                            background-color: #4CAF50;
+                            color: white;
+                            font-size: 16px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
+                        
+                        #loginForm button:hover {
+                            background-color: #45a049;
+                        }
+                        
+                        #loginForm p {
+                            text-align: center;
+                        }
+                        /* Admin Section */
+                        
+                        #adminSection {
+                            display: none;
+                        }
+                        
+                        #postQuestionForm {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 15px;
+                        }
+                        
+                        #postQuestionForm input[type="text"] {
+                            padding: 10px;
+                            font-size: 16px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                        }
+                        
+                        #postQuestionForm input[type="radio"] {
+                            margin-right: 10px;
+                        }
+                        
+                        #postQuestionForm button {
+                            padding: 10px;
+                            background-color: #007BFF;
+                            color: white;
+                            font-size: 16px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
+                        
+                        #postQuestionForm button:hover {
+                            background-color: #0056b3;
+                        }
+                        /* Questions List */
+                        
+                        #questionsList {
+                            list-style-type: none;
+                            padding: 0;
+                        }
+                        
+                        #questionsList li {
+                            margin-bottom: 20px;
+                            padding: 10px;
+                            background-color: #f9f9f9;
+                            border-radius: 4px;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                        }
+                        
+                        #questionsList strong {
+                            color: #333;
+                        }
+                        
+                        button {
+                            padding: 8px 12px;
+                            background-color: #DC3545;
+                            color: white;
+                            font-size: 14px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            margin-top: 10px;
+                        }
+                        
+                        button:hover {
+                            background-color: #c82333;
+                        }
+                        /* Trivia Generation Buttons */
+                        
+                        #generateTrivia,
+                        #deleteAllQuestions {
+                            padding: 12px;
+                            background-color: #FFC107;
+                            color: white;
+                            font-size: 16px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            margin-top: 20px;
+                            width: 100%;
+                        }
+                        
+                        #generateTrivia:hover,
+                        #deleteAllQuestions:hover {
+                            background-color: #e0a800;
+                        }

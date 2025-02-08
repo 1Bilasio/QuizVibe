@@ -4,72 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Game</title>
-    <link rel="stylesheet" href="quiz.css">
-    <style>
-        /* Styling for the Back to Homepage button */
-        
-        #home-btn {
-            margin-top: 30%;
-            padding: 10px 20px;
-            width: max-content;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        #home-btn:hover {
-            background-color: #45a049;
-            font-weight: 700;
-        }
-        
-        #next-btn {
-            margin-top: 30%;
-            margin-left: 2%;
-            width: max-content;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        #next-btn:hover {
-            background-color: #45a049;
-            font-weight: 700;
-        }
-    </style>
+    <title>Trivia Quiz</title>
+    <link rel="stylesheet" href="quizz.css">
 </head>
 
 <body>
-    <div id="quiz-container">
-        <h1>Quiz Game</h1>
-        <form id="quiz-form">
-            <div class="question" id="question-container"></div>
-            <div class="choices">
-                <input type="radio" name="choice" id="choice1" value="0"><label for="choice1" id="choice1-label"></label><br>
-                <input type="radio" name="choice" id="choice2" value="1"><label for="choice2" id="choice2-label"></label><br>
-                <input type="radio" name="choice" id="choice3" value="2"><label for="choice3" id="choice3-label"></label><br>
-                <input type="radio" name="choice" id="choice4" value="3"><label for="choice4" id="choice4-label"></label><br>
-            </div>
-            <button type="button" id="next-btn">Next Question</button>
-        </form>
-        <div id="score-container" style="display: none;">
-            <h2>Your Total Score: <span id="score"></span>/10</h2>
-        </div>
+    <div id="quizContainer" style="width: 60%; margin: 50px auto;">
+        <h2>Your Trivia Questions</h2>
+        <ul id="quizQuestionsList"></ul>
     </div>
 
-    <!-- Add Back to Homepage and Next Trivia button -->
-    <button id="home-btn" onclick="window.location.href='home.html'">Back to Homepage</button>
-    <button id="next-btn" onclick="window.location.href='quiz2.html'">Next Trivia</button>
+    <script>
+        // Retrieve the generated trivia from localStorage
+        const triviaQuestions = JSON.parse(localStorage.getItem('generatedTrivia'));
 
-    <script src="quiz.js"></script>
+        // If there are no questions in localStorage, display a message
+        if (!triviaQuestions || triviaQuestions.length === 0) {
+            document.getElementById('quizContainer').innerHTML = '<h3>No trivia questions available.</h3>';
+        } else {
+            // Display the 10 random questions
+            const quizQuestionsList = document.getElementById('quizQuestionsList');
+            triviaQuestions.forEach((q, index) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <strong>Q${index + 1}: </strong> ${q.question}<br>
+                    <strong>Choices:</strong><br>
+                    1. ${q.choices[0]}<br>
+                    2. ${q.choices[1]}<br>
+                    3. ${q.choices[2]}<br>
+                    4. ${q.choices[3]}<br>
+                    <strong>Correct Answer:</strong> ${q.choices[q.correctAnswer - 1]}<br>
+                    <hr>
+                `;
+                quizQuestionsList.appendChild(listItem);
+            });
+        }
+    </script>
 </body>
 
 </html>

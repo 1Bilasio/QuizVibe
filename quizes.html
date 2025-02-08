@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="quiz.css">
+    <style>
+        /* Styling for the Back to Homepage button */
+        
+        #home-btn {
+            margin-top: 30%;
+            padding: 10px 20px;
+            width: max-content;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #home-btn:hover {
+            background-color: #45a049;
+            font-weight: 700;
+        }
+        
+        #next-btn {
+            margin-top: 30%;
+            margin-left: 2%;
+            width: max-content;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #next-btn:hover {
+            background-color: #45a049;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="quiz-container">
+        <h1>Quiz Game</h1>
+        <form id="quiz-form">
+            <div class="question" id="question-container"></div>
+            <div class="choices">
+                <input type="radio" name="choice" id="choice1" value="0"><label for="choice1" id="choice1-label"></label><br>
+                <input type="radio" name="choice" id="choice2" value="1"><label for="choice2" id="choice2-label"></label><br>
+                <input type="radio" name="choice" id="choice3" value="2"><label for="choice3" id="choice3-label"></label><br>
+                <input type="radio" name="choice" id="choice4" value="3"><label for="choice4" id="choice4-label"></label><br>
+            </div>
+            <button type="button" id="next-btn">Next Question</button>
+        </form>
+        <div id="score-container" style="display: none;">
+            <h2>Your Total Score: <span id="score"></span>/10</h2>
+        </div>
+    </div>
+
+    <!-- Add Back to Homepage and Next Trivia button -->
+    <button id="home-btn" onclick="window.location.href='home.html'">Back to Homepage</button>
+
+    <script>
+        const triviaQuestions = JSON.parse(localStorage.getItem('generatedTrivia')) || [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function loadQuestion(index) {
+            const question = triviaQuestions[index];
+
+            // Set question text
+            document.getElementById('question-container').innerText = question.question;
+
+            // Set choices
+            for (let i = 0; i < 4; i++) {
+                document.getElementById(`choice${i+1}-label`).innerText = question.choices[i];
+            }
+
+            // Reset radio buttons
+            const radioButtons = document.querySelectorAll('input[name="choice"]');
+            radioButtons.forEach(radio => radio.checked = false);
+        }
+
+        function checkAnswer() {
+            const selectedChoice = document.querySelector('input[name="choice"]:checked');
+            if (selectedChoice) {
+                const answerIndex = parseInt(selectedChoice.value);
+                const correctAnswer = triviaQuestions[currentQuestionIndex].correctAnswer;
+
+                if (answerIndex === correctAnswer - 1) {
+                    score++;
+                }
+            }
+        }
+
+        function showScore() {
+            document.getElementById('quiz-form').style.display = 'none';
+            document.getElementById('score-container').style.display = 'block';
+            document.getElementById('score').innerText = score;
+        }
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            checkAnswer();
+
+            if (currentQuestionIndex < triviaQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            } else {
+                showScore();
+            }
+        });
+
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+
+</html>

@@ -14,6 +14,12 @@ function initApp() {
 
     const questionForm = document.getElementById('postQuestionForm');
     questionForm.addEventListener('submit', handlePostQuestion);
+
+    const generateTriviaButton = document.getElementById('generateTrivia');
+    generateTriviaButton.addEventListener('click', generateTrivia);
+
+    const deleteAllButton = document.getElementById('deleteAllQuestions');
+    deleteAllButton.addEventListener('click', deleteAllQuestions);
 }
 
 // Handle login
@@ -40,7 +46,7 @@ function isValidAdmin(username, password) {
 function loginSuccess() {
     alert('Login successful!');
 
-    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('loginFormContainer').style.display = 'none';
     document.getElementById('adminSection').style.display = 'block';
 }
 
@@ -114,7 +120,7 @@ function displayPostedQuestions() {
     const questionsList = document.getElementById('questionsList');
     questionsList.innerHTML = ''; // Clear existing list
 
-    triviaQuestions.forEach(q => {
+    triviaQuestions.forEach((q, index) => {
         const listItem = document.createElement('li');
         listItem.innerHTML = `
         <strong>Q:</strong> ${q.question}<br>
@@ -124,10 +130,65 @@ function displayPostedQuestions() {
         3. ${q.choices[2]}<br>
         4. ${q.choices[3]}<br>
         <strong>Correct Answer:</strong> ${q.choices[q.correctAnswer - 1]}<br>
+        <button onclick="deleteQuestion(${index})">Delete Question</button>
         <hr>
       `;
         questionsList.appendChild(listItem);
     });
+}
+
+// Delete a specific question by index
+function deleteQuestion(index) {
+    triviaQuestions.splice(index, 1);
+    displayPostedQuestions();
+}
+
+// Generate a trivia with 10 random questions
+function generateTrivia() {
+    if (triviaQuestions.length < 10) {
+        alert('You need at least 10 questions to generate a trivia.');
+        return;
+    }
+
+    const randomQuestions = getRandomQuestions(10);
+
+    // Store the generated random questions in localStorage
+    localStorage.setItem('generatedTrivia', JSON.stringify(randomQuestions));
+
+    // Redirect to quizes.html to display the generated trivia
+    window.location.href = 'quizes.html';
+}
+
+// Get a set of 10 random questions without duplicates
+function getRandomQuestions(count) {
+    const shuffledQuestions = shuffleArray([...triviaQuestions]); // Clone and shuffle the questions
+    return shuffledQuestions.slice(0, count); // Select the first 'count' questions
+}
+
+// Fisher-Yates (Knuth) Shuffle algorithm for shuffling array efficiently
+function shuffleArray(array) {
+    let currentIndex = array.length,
+        randomIndex, temporaryValue;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // Swap it with the current element
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+// Delete all questions
+function deleteAllQuestions() {
+    triviaQuestions.length = 0;
+    displayPostedQuestions();
 }
 
 initApp();
