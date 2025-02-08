@@ -63,6 +63,13 @@ function handlePostQuestion(e) {
 
     const correctAnswer = getCorrectAnswer();
 
+    // Check if the user has selected a correct answer
+    if (!correctAnswer) {
+        alert('You must select a correct answer before proceeding!');
+        return; // Stop further processing
+    }
+
+    // If the form is valid, post the question
     if (isFormValid(question, choices, correctAnswer)) {
         postQuestion(question, choices, correctAnswer);
         resetForm();
@@ -75,7 +82,7 @@ function handlePostQuestion(e) {
 // Get the correct answer based on the selected radio button
 function getCorrectAnswer() {
     const selectedAnswer = document.querySelector('input[name="correctAnswer"]:checked');
-    return selectedAnswer ? selectedAnswer.value : null;
+    return selectedAnswer ? selectedAnswer.value : null; // Return null if no answer is selected
 }
 
 // Check if the form is valid

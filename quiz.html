@@ -6,6 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game</title>
     <link rel="stylesheet" href="quiz.css">
+    <style>
+        /* Styling for the Back to Homepage button */
+        
+        #home-btn {
+            margin-top: 30%;
+            padding: 10px 20px;
+            width: max-content;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #home-btn:hover {
+            background-color: #45a049;
+            font-weight: 700;
+        }
+        
+        #next-btn {
+            margin-top: 30%;
+            margin-left: 2%;
+            width: max-content;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #next-btn:hover {
+            background-color: #45a049;
+            font-weight: 700;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,6 +64,11 @@
             <h2>Your Total Score: <span id="score"></span>/10</h2>
         </div>
     </div>
+
+    <!-- Add Back to Homepage and Next Trivia button -->
+    <button id="home-btn" onclick="window.location.href='home.html'">Back to Homepage</button>
+    <button id="next-btn" onclick="window.location.href='quiz2.html'">Next Trivia</button>
+
     <script src="quiz.js"></script>
 </body>
 
