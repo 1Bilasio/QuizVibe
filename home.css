@@ -71,19 +71,7 @@
                 background-color: #6f6f70;
                 font-weight: 600;
             }
-            /* Categories styling */
-            /* .categories {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-                margin-bottom: 40px;
-            }
-            
-            .categories button {
-                padding: 10px 20px;
-                font-size: 1.1em;
-            }*/
-            /* Featured Quiz section styling */
+        
             
             #featuredQuiz {
                 background-color: #efedf146;
@@ -110,7 +98,6 @@
                 font-size: 1.2em;
                 padding: 12px 25px;
             }
-            /* Footer styling */
             
             footer {
                 text-align: center;

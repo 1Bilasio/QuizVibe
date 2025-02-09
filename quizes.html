@@ -44,6 +44,11 @@
             background-color: #45a049;
             font-weight: 700;
         }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -59,6 +64,7 @@
                 <input type="radio" name="choice" id="choice4" value="3"><label for="choice4" id="choice4-label"></label><br>
             </div>
             <button type="button" id="next-btn">Next Question</button>
+            <div id="error-message" class="error-message"></div>
         </form>
         <div id="score-container" style="display: none;">
             <h2>Your Total Score: <span id="score"></span>/10</h2>
@@ -87,18 +93,14 @@
             // Reset radio buttons
             const radioButtons = document.querySelectorAll('input[name="choice"]');
             radioButtons.forEach(radio => radio.checked = false);
+
+            // Clear error message
+            document.getElementById('error-message').innerText = '';
         }
 
         function checkAnswer() {
             const selectedChoice = document.querySelector('input[name="choice"]:checked');
-            if (selectedChoice) {
-                const answerIndex = parseInt(selectedChoice.value);
-                const correctAnswer = triviaQuestions[currentQuestionIndex].correctAnswer;
-
-                if (answerIndex === correctAnswer - 1) {
-                    score++;
-                }
-            }
+            return selectedChoice ? parseInt(selectedChoice.value) : null;
         }
 
         function showScore() {
@@ -108,13 +110,24 @@
         }
 
         document.getElementById('next-btn').addEventListener('click', function() {
-            checkAnswer();
+            const selectedAnswer = checkAnswer();
 
-            if (currentQuestionIndex < triviaQuestions.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion(currentQuestionIndex);
+            if (selectedAnswer === null) {
+                // Display error message if no answer is selected
+                document.getElementById('error-message').innerText = 'Please select an answer before proceeding.';
             } else {
-                showScore();
+                // If answer is selected, check if it's correct
+                const correctAnswer = triviaQuestions[currentQuestionIndex].correctAnswer;
+                if (selectedAnswer === correctAnswer - 1) {
+                    score++;
+                }
+
+                if (currentQuestionIndex < triviaQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion(currentQuestionIndex);
+                } else {
+                    showScore();
+                }
             }
         });
 

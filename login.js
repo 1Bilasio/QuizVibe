@@ -20,6 +20,12 @@ function initApp() {
 
     const deleteAllButton = document.getElementById('deleteAllQuestions');
     deleteAllButton.addEventListener('click', deleteAllQuestions);
+
+    const saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', saveQuestions);
+
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', logout);
 }
 
 // Handle login
@@ -189,6 +195,20 @@ function shuffleArray(array) {
 function deleteAllQuestions() {
     triviaQuestions.length = 0;
     displayPostedQuestions();
+}
+
+// Save trivia questions to localStorage
+function saveQuestions() {
+    localStorage.setItem('triviaQuestions', JSON.stringify(triviaQuestions));
+    alert('Trivia questions have been saved!');
+}
+
+// Logout the admin and return to the homepage
+function logout() {
+    document.getElementById('loginFormContainer').style.display = 'block';
+    document.getElementById('adminSection').style.display = 'none';
+    alert('You have logged out. Returning to the homepage.');
+    window.location.href = 'home.html'; // Redirect to the homepage
 }
 
 initApp();
